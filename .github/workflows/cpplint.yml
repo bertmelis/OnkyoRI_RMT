@@ -1,0 +1,19 @@
+name: Cpplint
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Install dependencies
+      run: |
+        pip install cpplint
+    - name: Cpplint
+      run: |
+        cpplint --repository=. --recursive --filter=-whitespace/line_length,-build/include ./src
