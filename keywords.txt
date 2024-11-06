@@ -1,0 +1,37 @@
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+OnkyoRI_RMT	KEYWORD1
+OnkyoRI	KEYWORD1
+Command	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+#VitoWifi
+begin	KEYWORD2
+end	KEYWORD2
+write	KEYWORD2
+busy	KEYWORD2
+read	KEYWORD2
+write	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+#Enums
+VOLUMEUP	LITERAL1
+VOLUMEDOWN	LITERAL1
+ONOFFTOGGLE	LITERAL1
+MUTINGTOGGLE	LITERAL1
+SOURCECD	LITERAL1
+POWERON	LITERAL1
+NEXTINPUT	LITERAL1
+PREVINPUT	LITERAL1
+POWEROFF	LITERAL1
+INPUTLINEIN	LITERAL1
+SOURCEDOCK	LITERAL1
+MUTINGTOGGLE	LITERAL1
