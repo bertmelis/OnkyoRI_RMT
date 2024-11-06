@@ -1,0 +1,24 @@
+{
+  "name": "OnkyoRI_RMT",
+  "version": "0.0.1",
+  "keywords": "Arduino, esp32, Onkyo, RI, rmt",
+  "description": "OnkyoRI implementation using the RMT peripheral on ESP32",
+  "homepage": "https://github.com/bertmelis/OnkyoRI_RMT",
+  "license": "MIT",
+  "authors": {
+    "name": "Bert Melis",
+    "url": "https://github.com/bertmelis",
+    "maintainer": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bertmelis/OnkyoRI_RMT.git",
+    "branch": "develop"
+  },
+  "frameworks": [
+    "arduino"
+  ],
+  "platforms": [
+    "espressif32"
+  ]
+}
