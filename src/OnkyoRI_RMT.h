@@ -18,7 +18,7 @@ constexpr std::size_t OIR_NUMBER_FRAMEBITS = 1 + 12 + 1;  // head + data + tail
 
 class OnkyoRI_RMT {
  public:
-  OnkyoRI_RMT(int pin);
+  explicit OnkyoRI_RMT(int pin);
   ~OnkyoRI_RMT();
 
   bool begin();
@@ -30,6 +30,6 @@ class OnkyoRI_RMT {
   bool busy();
 
  private:
-   int _pin;
-   rmt_data_t _data[OIR_NUMBER_FRAMEBITS];
+  int _pin;
+  rmt_data_t _data[OIR_NUMBER_FRAMEBITS];
 };
