@@ -16,7 +16,7 @@ enum class Command : uint16_t {
   VOLUMEUP     = 0x0002,
   VOLUMEDOWN   = 0x0003,
   ONOFFTOGGLE  = 0x0004,
-  MUTINGTOGGLE = 0x0005,
+  TOGGLEMUTE   = 0x0005,
   SOURCECD     = 0x0020,
   POWERON      = 0x002F,
   NEXTINPUT    = 0x00D5,
