@@ -8,21 +8,21 @@ the LICENSE file.
 
 #include "OnkyoRI_RMT.h"
 
-constexpr uint32_t OIR_HEAD_LEVEL0 = HIGH;
+constexpr uint32_t OIR_HEAD_LEVEL0 = 1;
 constexpr uint32_t OIR_HEAD_DURATION0 = 30;
-constexpr uint32_t OIR_HEAD_LEVEL1 = LOW;
+constexpr uint32_t OIR_HEAD_LEVEL1 = 0;
 constexpr uint32_t OIR_HEAD_DURATION1 = 10;
-constexpr uint32_t OIR_TAIL_LEVEL0 = HIGH;
+constexpr uint32_t OIR_TAIL_LEVEL0 = 1;
 constexpr uint32_t OIR_TAIL_DURATION0 = 10;
-constexpr uint32_t OIR_TAIL_LEVEL1 = LOW;
+constexpr uint32_t OIR_TAIL_LEVEL1 = 0;
 constexpr uint32_t OIR_TAIL_DURATION1 = 200;
-constexpr uint32_t OIR_BIT0_LEVEL0 = HIGH;
+constexpr uint32_t OIR_BIT0_LEVEL0 = 1;
 constexpr uint32_t OIR_BIT0_DURATION0 = 10;
-constexpr uint32_t OIR_BIT0_LEVEL1 = LOW;
+constexpr uint32_t OIR_BIT0_LEVEL1 = 0;
 constexpr uint32_t OIR_BIT0_DURATION1 = 10;
-constexpr uint32_t OIR_BIT1_LEVEL0 = HIGH;
+constexpr uint32_t OIR_BIT1_LEVEL0 = 1;
 constexpr uint32_t OIR_BIT1_DURATION0 = 10;
-constexpr uint32_t OIR_BIT1_LEVEL1 = LOW;
+constexpr uint32_t OIR_BIT1_LEVEL1 = 0;
 constexpr uint32_t OIR_BIT1_DURATION1 = 20;
 
 OnkyoRI_RMT::OnkyoRI_RMT(int pin)
@@ -46,10 +46,10 @@ OnkyoRI_RMT::~OnkyoRI_RMT() {
 bool OnkyoRI_RMT::begin() {
   // tx only on _pin, 1 memory block and 100ns tick
   if (rmtInit(_pin, RMT_TX_MODE, RMT_MEM_NUM_BLOCKS_1, 10000000)) {
-    oir_log_i("init RMT succes");
+    ori_log_i("init RMT succes");
     return true;
   }
-  oir_log_e("init RMT failed");
+  ori_log_e("init RMT failed");
   return false;
 }
 
@@ -58,17 +58,17 @@ bool OnkyoRI_RMT::end() {
 }
 
 bool OnkyoRI_RMT::write(OnkyoRI::Command command) {
-  return write(static_cast<std::underlying_type<OnkyoRI::Command>>(command));
+  return write(static_cast<typename std::underlying_type<OnkyoRI::Command>::type>(command));
 }
 
 bool OnkyoRI_RMT::write(uint16_t command) {
   // checks
-  if (busy) {
-    oir_log_w("Could not write to RMT: busy");
+  if (busy()) {
+    ori_log_w("Could not write to RMT: busy");
     return false;
   }
   if (command > 0xFFF) {
-    oir_log_w("Command will be truncated < 12bits");
+    ori_log_w("Command will be truncated < 12bits");
     command &= 0xFFF;
   }
 
@@ -89,10 +89,10 @@ bool OnkyoRI_RMT::write(uint16_t command) {
   }
 
   // write
-  if (rmtWriteAsync(_pin, &_data, OIR_NUMBER_FRAMEBITS)) {
+  if (rmtWriteAsync(_pin, _data, OIR_NUMBER_FRAMEBITS)) {
     return true;
   }
-  oir_log_e("Could not write to RMT");
+  ori_log_e("Could not write to RMT");
   return false;
 }
 
